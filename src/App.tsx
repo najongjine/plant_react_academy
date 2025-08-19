@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import CounterPage from "./pages/CounterPage";
+import EmbedDemo from "./pages/EmbedDemo";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           {/* 여기 안에 있는 것만 바뀜 */}
           <Route path="/" element={<Home />} />
           <Route path="/counter" element={<CounterPage />} />
+          <Route path="/embed" element={<EmbedDemo />} />
         </Route>
       </Routes>
     </BrowserRouter>
