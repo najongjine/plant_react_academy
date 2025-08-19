@@ -1,6 +1,8 @@
 import React from "react";
 
 /**
+ * https://nuffjuice.com/
+ * 
  * NuffJuice 스타일의 싱글 페이지 랜딩 (React + Tailwind)
  * - 헤더: 배경 이미지 가능, Home / AI / Wiki 메뉴
  * - 본문 섹션: Hero, 제품 그리드, 특징, 프로모션 배너, FAQ
