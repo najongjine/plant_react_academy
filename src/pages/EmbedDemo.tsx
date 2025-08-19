@@ -21,7 +21,7 @@ const headerBg =
 export default function App() {
   return (
     <div className="min-h-screen bg-emerald-50 text-slate-900">
-      <SiteHeader />
+      {/* <SiteHeader /> */}
       <Hero />
       <ProductShowcase />
       <Features />
