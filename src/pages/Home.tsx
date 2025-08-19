@@ -9,6 +9,12 @@ const Home: React.FC = () => {
             <Link to="/todo_list">
                 <button>Todo List로 이동</button>
             </Link>
+
+            <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+                <h1 className="text-4xl font-bold text-blue-500">
+                    Tailwind CSS 적용 완료!
+                </h1>
+            </div>
         </>
     );
 };
