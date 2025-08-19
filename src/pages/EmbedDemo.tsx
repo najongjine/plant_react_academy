@@ -41,7 +41,7 @@ function SiteHeader() {
       />
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <a href="#" className="flex items-center gap-2 font-extrabold tracking-tight">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-600 text-white">NJ</span>
+          <span className="inline-flex items-center justify-center rounded-xl bg-emerald-600 text-white px-3 py-1">Nature</span>
           <span className="text-lg md:text-xl">NuffJuice</span>
         </a>
 
