@@ -32,7 +32,7 @@ export default function App() {
       {/* <Features /> */}
       <AiDiagnose />
       <WikiPreview />
-      <FAQ />
+      {/* <FAQ /> */}
       <SiteFooter />
     </div>
   );
