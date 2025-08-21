@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { drawBoxes, fileToBase64 } from "../hooks/utils";
 import type { RoboflowResponse } from "../types/roboflow";
+import AiDiagnose from "../components/AiDiagnose";
 
 const TestPage: React.FC = () => {
     // NOTE: 실제 배포에선 키 노출 방지(프록시 서버) 권장
@@ -212,6 +213,9 @@ const TestPage: React.FC = () => {
                         {result ? JSON.stringify(result, null, 2) : "아직 결과가 없습니다."}
                     </pre>
                 </div>
+            </div>
+            <div>
+                <AiDiagnose />
             </div>
         </div>
     );
