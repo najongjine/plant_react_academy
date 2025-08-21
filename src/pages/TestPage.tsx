@@ -7,8 +7,9 @@ import AiDiagnose from "../components/AiDiagnose";
 
 const TestPage: React.FC = () => {
     // NOTE: 실제 배포에선 키 노출 방지(프록시 서버) 권장
-    const endpoint = "https://serverless.roboflow.com/corn-leaf-blight-detection-final/2";
-    const apiKey = "iWXvPKU6wZG4gB4PEeuI";
+    //const endpoint = "https://serverless.roboflow.com/corn-leaf-blight-detection-final/2";
+    const endpoint = "https://serverless.roboflow.com/plants-final/1";
+    const apiKey = process.env.REACT_APP_ROBOFLOW_API_KEY;
 
     const [file, setFile] = useState<File | null>(null);
     const [imgSrc, setImgSrc] = useState<string | null>(null);           // 미리보기 data URL
