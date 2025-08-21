@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import CounterPage from "./pages/CounterPage";
 import EmbedDemo from "./pages/EmbedDemo";
+import TestPage from "./pages/TestPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/counter" element={<CounterPage />} />
           <Route path="/embed" element={<EmbedDemo />} />
+          <Route path="/test" element={<TestPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
