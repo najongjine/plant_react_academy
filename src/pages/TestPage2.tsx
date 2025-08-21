@@ -30,7 +30,7 @@ const TestPage2: React.FC = () => {
         files.forEach((f) => form.append('images', f, f.name));
 
         try {
-            const resp = await fetch('http://localhost:8787/api/gemini/stream', {
+            const resp = await fetch('http://localhost:3001/api/gemini/stream', {
                 method: 'POST',
                 body: form,
                 signal: ctrl.signal,
