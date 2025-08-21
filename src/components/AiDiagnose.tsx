@@ -13,7 +13,7 @@ const AiDiagnose: React.FC = () => {
     const [notes, setNotes] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const previewUrl = useMemo(() => (file ? URL.createObjectURL(file) : ""), [file]);
+    const previewUrl = file ? URL.createObjectURL(file) : "";
 
     const onPick = () => fileInputRef.current?.click();
 
