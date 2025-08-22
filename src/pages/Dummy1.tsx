@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from "axios";
 
 const Dummy1: React.FC = () => {
     const apiKey = process.env.REACT_APP_ROBOFLOW_API_KEY;
+    const [file, setFile] = useState<File | null>(null);
 
     useEffect(
         () => {
@@ -15,7 +16,7 @@ const Dummy1: React.FC = () => {
     const getAIReponse = async () => {
         console.log(`# apikey:${apiKey}`);
 
-        const base64: string = await fileToBase64(file);
+        const base64: string = await fileToBase64((file) as any);
         const base64Body = base64.split(",")[1] ?? ""; // data:image/...;base64, 이후만 추출
 
         // 2) roboflow 서버에 AI 판별 요청
