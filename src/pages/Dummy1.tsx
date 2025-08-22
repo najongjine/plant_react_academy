@@ -34,10 +34,22 @@ const Dummy1: React.FC = () => {
         const data: any = res.data;
     }
 
+    const onPick = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const f = e.target.files?.[0] || null;
+        setFile(f ?? null);
+        if (f) {
+            const url = URL.createObjectURL(f);
+        } else {
+        }
+    };
+
     return (
         <div>
             <div>
                 apikey:{apiKey}
+                <div>
+                    <input type="file" accept="image/*" onChange={onPick} />
+                </div>
             </div>
         </div>
     );
