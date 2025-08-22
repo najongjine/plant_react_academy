@@ -32,8 +32,11 @@ const Dummy1: React.FC = () => {
             });
 
             // RoboflowResponse 형태를 기대하지만, 혹시 몰라 any → 부분적 캐스팅
-            const data: any = res?.data;
+            let data: any = res?.data;
             console.log(`# data: `, data)
+            let predictions: any[] = data?.predictions
+            console.log(`# predictions: `, predictions)
+
         } catch (error: any) {
             console.error(`! getAIReponse err: `, error?.message)
         }
