@@ -31,7 +31,8 @@ const Dummy1: React.FC = () => {
         });
 
         // RoboflowResponse 형태를 기대하지만, 혹시 몰라 any → 부분적 캐스팅
-        const data: any = res.data;
+        const data: any = res?.data;
+        console.log(`# data: `, data)
     }
 
     const onPick = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +49,21 @@ const Dummy1: React.FC = () => {
             <div>
                 apikey:{apiKey}
                 <div>
-                    <input type="file" accept="image/*" onChange={onPick} />
+                    <input
+                        type="file" accept="image/*" onChange={onPick} />
+
+                </div>
+                <div>
+                    <button
+                        onClick={getAIReponse}
+                        style={{
+                            padding: "8px 14px",
+                            borderRadius: 8,
+                            border: "1px solid #ddd",
+                        }}
+                    >
+                        Roboflow로 전송
+                    </button>
                 </div>
             </div>
         </div>
