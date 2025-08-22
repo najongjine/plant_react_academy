@@ -6,6 +6,7 @@ import axios, { AxiosResponse } from "axios";
 const Dummy1: React.FC = () => {
     const apiKey = process.env.REACT_APP_ROBOFLOW_API_KEY;
     const [file, setFile] = useState<File | null>(null);
+    const [preview, setPreview] = useState<string>("");
 
     useEffect(
         () => {
@@ -45,7 +46,7 @@ const Dummy1: React.FC = () => {
             setFile(f ?? null);
             if (f) {
                 const url = URL.createObjectURL(f);
-            } else {
+                setPreview(URL.createObjectURL(f)); // 미리보기 URL 생성
             }
         } catch (error: any) {
             console.error(`! onpick err: `, error?.message)
@@ -56,7 +57,18 @@ const Dummy1: React.FC = () => {
     return (
         <div>
             <div>
-                apikey:{apiKey}
+                <div>
+                    {file && (
+                        <div style={{ marginTop: "10px" }}>
+                            <p>선택한 파일: {file.name}</p>
+                            <img
+                                src={preview}
+                                alt="preview"
+                                style={{ width: "415px", height: "415px", objectFit: "cover" }}
+                            />
+                        </div>
+                    )}
+                </div>
                 <div>
                     <input
                         type="file" accept="image/*" onChange={onPick} />
