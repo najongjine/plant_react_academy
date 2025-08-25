@@ -3,10 +3,27 @@ import React, { useEffect, useRef, useState } from "react";
 import { fileToBase64 } from "../hooks/utils";
 import axios, { AxiosResponse } from "axios";
 
+type RoboflowPrediction = {
+    class?: string;
+    confidence?: number;
+    x?: number;
+    y?: number;
+    width?: number;
+    height?: number;
+    // 필요시 더 확장
+};
+type RoboflowResponse = {
+    time?: number;
+    image?: { width: number; height: number };
+    predictions?: RoboflowPrediction[];
+    [k: string]: any;
+};
+
 const Dummy1: React.FC = () => {
     const apiKey = process.env.REACT_APP_ROBOFLOW_API_KEY;
     const [file, setFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string>("");
+    const [roboflowPredict, setRoboflowPredict] = useState<RoboflowResponse>({});
 
     useEffect(
         () => {
@@ -34,8 +51,9 @@ const Dummy1: React.FC = () => {
             // RoboflowResponse 형태를 기대하지만, 혹시 몰라 any → 부분적 캐스팅
             let data: any = res?.data;
             console.log(`# data: `, data)
-            let predictions: any[] = data?.predictions
-            console.log(`# predictions: `, predictions)
+            if (data?.predictions) {
+                setRoboflowPredict(data);
+            }
 
         } catch (error: any) {
             console.error(`! getAIReponse err: `, error?.message)
