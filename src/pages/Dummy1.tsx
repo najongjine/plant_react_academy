@@ -24,7 +24,7 @@ const Dummy1: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string>("");
     const [roboflowPredict, setRoboflowPredict] = useState<RoboflowResponse>({});
-
+    const [dummy, setDummy] = useState<any>({});
     useEffect(
         () => {
 
@@ -51,9 +51,7 @@ const Dummy1: React.FC = () => {
             // RoboflowResponse 형태를 기대하지만, 혹시 몰라 any → 부분적 캐스팅
             let data: any = res?.data;
             console.log(`# data: `, data)
-            if (data?.predictions) {
-                setRoboflowPredict(data);
-            }
+            setRoboflowPredict(data);
 
         } catch (error: any) {
             console.error(`! getAIReponse err: `, error?.message)
@@ -106,6 +104,15 @@ const Dummy1: React.FC = () => {
                     >
                         Roboflow로 전송
                     </button>
+                </div>
+                <div>
+                    <ul>
+                        {roboflowPredict?.predictions?.map((p) => (
+                            <li key={p.confidence}>
+                                {p.class} ({(p?.confidence ?? 0 * 100).toFixed(1)}%)
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div>
