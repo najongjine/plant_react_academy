@@ -70,7 +70,7 @@ const AiDiagnose: React.FC = () => {
             console.error(err);
             setError(err?.message || "요청 중 오류가 발생했습니다.");
         } finally {
-            setLoading(false);
+            setIsLoading(false);
 
         }
     };
@@ -104,7 +104,9 @@ const AiDiagnose: React.FC = () => {
                         <div>
                             <h3 className="text-2xl font-extrabold text-emerald-900">AI 진단</h3>
                             <p className="mt-2 text-slate-600">
-                                식물 사진을 업로드하고 보이는 증상을 간단히 적어주세요. 모델이 가장 가능성 높은 원인을 제시합니다.
+                                {isLoading ? <span>추론 중입니다...</span> : null}
+                                {!isLoading ? <span>식물 사진을 업로드하고 보이는 증상을 간단히 적어주세요. 모델이 가장 가능성 높은 원인을 제시합니다.</span> : null}
+
                             </p>
 
                             <div className="mt-5 space-y-3">
@@ -174,7 +176,10 @@ const AiDiagnose: React.FC = () => {
                                             alt="preview"
                                             style={{ width: "100%", display: "block" }}
                                             onLoad={() => {
-                                                if (imgRef?.current) runInference();
+                                                if (imgRef?.current) {
+                                                    setIsLoading(true);
+                                                    runInference();
+                                                }
                                             }}
                                         />
                                     ) : (
