@@ -136,11 +136,17 @@ const AiDiagnose: React.FC = () => {
 
                             <div className="mt-6 rounded-2xl border border-emerald-200/70 bg-emerald-50 p-4">
                                 <div className="flex items-center justify-between">
-                                    <p className="text-base font-bold text-emerald-900">가짜 레이블</p>
-                                    <span className="rounded-xl bg-white px-3 py-1 text-xs font-semibold text-emerald-700">
-                                        신뢰도 가짜값%
-                                    </span>
+                                    {result?.predictions?.map((p) => (
+                                        <span>
+                                            <p className="text-base font-bold text-emerald-900">가짜 레이블</p>
+                                            <span className="rounded-xl bg-white px-3 py-1 text-xs font-semibold text-emerald-700">
+                                                신뢰도 가짜값%
+                                            </span>
+                                        </span>
+                                    ))}
+
                                 </div>
+                                {/* 
                                 <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-emerald-900/90">
 
                                     <li key="fake1">가짜li 값</li>
@@ -150,6 +156,7 @@ const AiDiagnose: React.FC = () => {
                                         가자 a title
                                     </a>
                                 </div>
+                                */}
                             </div>
                         </div>
 
@@ -168,7 +175,7 @@ const AiDiagnose: React.FC = () => {
                                             alt="preview"
                                             style={{ width: "100%", display: "block" }}
                                             onLoad={() => {
-                                                if (imgRef.current) runInference();
+                                                if (imgRef?.current) runInference();
                                             }}
                                         />
                                     ) : (
