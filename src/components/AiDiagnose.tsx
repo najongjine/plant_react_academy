@@ -135,14 +135,14 @@ const AiDiagnose: React.FC = () => {
                             </div>
 
                             <div className="mt-6 rounded-2xl border border-emerald-200/70 bg-emerald-50 p-4">
-                                <div className="flex items-center justify-between">
+                                <div className="items-center justify-between">
                                     {result?.predictions?.map((p) => (
-                                        <span>
-                                            <p className="text-base font-bold text-emerald-900">{p.class}</p>
+                                        <div>
+                                            <p className="text-base font-bold text-emerald-900">{p.class} : </p>
                                             <span className="rounded-xl bg-white px-3 py-1 text-xs font-semibold text-emerald-700">
                                                 {p?.confidence ?? 0 * 100} %
                                             </span>
-                                        </span>
+                                        </div>
                                     ))}
 
                                 </div>
