@@ -47,7 +47,6 @@ const AiDiagnose: React.FC = () => {
         setResult(null);
 
         try {
-            alert("runInference")
             // 1) 파일을 base64 (헤더 제거)로 변환
             const base64: string = await fileToBase64(file);
             const base64Body = base64.split(",")[1] ?? ""; // data:image/...;base64, 이후만 추출
