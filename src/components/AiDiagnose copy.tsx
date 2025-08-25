@@ -1,93 +1,28 @@
 // src/components/Header.tsx
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import UploadIcon from "./svg/UploadIcon";
 import CameraIcon from "./CameraIcon";
-import { drawBoxes, fileToBase64, formatBytes } from "../hooks/utils";
+import { formatBytes } from "../hooks/utils";
 import Stat from "./Stat";
-import { RoboflowResponse } from "../types/roboflow";
-import axios, { AxiosResponse } from "axios";
 
 
 const AiDiagnose: React.FC = () => {
-    const apiKey = process.env.REACT_APP_ROBOFLOW_API_KEY;
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [file, setFile] = useState<File | null>(null);
     const [notes, setNotes] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [imgSrc, setImgSrc] = useState<string | null>(null);           // 미리보기 data URL
-    const [result, setResult] = useState<RoboflowResponse | null>(null); // 응답 JSON
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string>("");
 
     const previewUrl = file ? URL.createObjectURL(file) : "";
-    const imgRef = useRef<HTMLImageElement | null>(null);
-    const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-    const onPick = () => { fileInputRef.current?.click(); }
+    const onPick = () => fileInputRef.current?.click();
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const f = e.target.files?.[0];
-        if (!f) return;
-        setFile(f);
-        const reader = new FileReader();
-        reader.onload = () => setImgSrc(String(reader.result));
-        reader.readAsDataURL(f);
-    };
-
-    // 업로드 & 추론 요청
-    const runInference = async (): Promise<void> => {
-        if (!file) {
-            setError("먼저 이미지를 선택하세요.");
-            return;
-        }
-        setLoading(true);
-        setError("");
-        setResult(null);
-
-        try {
-            // 1) 파일을 base64 (헤더 제거)로 변환
-            const base64: string = await fileToBase64(file);
-            const base64Body = base64.split(",")[1] ?? ""; // data:image/...;base64, 이후만 추출
-
-            // 2) 서버 요청
-            const res: AxiosResponse<any> = await axios({
-                method: "POST",
-                url: `https://serverless.roboflow.com/plants-final/1`,
-                params: { api_key: apiKey },
-                data: base64Body,
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-            });
-
-            // RoboflowResponse 형태를 기대하지만, 혹시 몰라 any → 부분적 캐스팅
-            const data: any = res.data;
-            setResult(data as RoboflowResponse);
-        } catch (err: any) {
-            console.error(err);
-            setError(err?.message || "요청 중 오류가 발생했습니다.");
-        } finally {
-            setLoading(false);
+        if (f) {
+            setFile(f);
         }
     };
-
-    // 응답(result) 도착 시, 캔버스에 박스 그리기
-    useEffect(() => {
-        if (!result || !imgRef.current || !canvasRef.current) return;
-
-        const imgEl = imgRef.current;
-        const canvas = canvasRef.current;
-
-        // 이미지가 로드된 뒤 그리기
-        if (!imgEl.complete) {
-            const onLoad = () => drawBoxes(canvas, imgEl, result);
-            imgEl.addEventListener("load", onLoad, { once: true });
-            return () => imgEl.removeEventListener("load", onLoad);
-        } else {
-            drawBoxes(canvas, imgEl, result);
-        }
-    }, [result, imgSrc]);
 
     return (
         <section id="ai" className="relative overflow-hidden py-16">
