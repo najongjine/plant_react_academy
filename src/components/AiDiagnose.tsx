@@ -26,19 +26,19 @@ const AiDiagnose: React.FC = () => {
 
     const onPick = () => { fileInputRef.current?.click(); }
 
-    const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const f = e.target.files?.[0];
         if (!f) return;
         setFile(f);
         const reader = new FileReader();
         reader.onload = () => setImgSrc(String(reader.result));
         reader.readAsDataURL(f);
-        runInference();
     };
 
     // 업로드 & 추론 요청
     const runInference = async (): Promise<void> => {
-        if (!imgSrc) {
+        if (!file) {
+            alert("먼저 이미지를 선택하세요")
             setError("먼저 이미지를 선택하세요.");
             return;
         }
@@ -167,6 +167,9 @@ const AiDiagnose: React.FC = () => {
                                             src={imgSrc}
                                             alt="preview"
                                             style={{ width: "100%", display: "block" }}
+                                            onLoad={() => {
+                                                if (imgRef.current) runInference();
+                                            }}
                                         />
                                     ) : (
                                         <div
