@@ -85,11 +85,11 @@ const AiDiagnose: React.FC = () => {
 
         // 이미지가 로드된 뒤 그리기
         if (!imgEl.complete) {
-            const onLoad = () => drawBoxes(canvas, imgEl, result);
-            imgEl.addEventListener("load", onLoad, { once: true });
-            return () => imgEl.removeEventListener("load", onLoad);
+            //const onLoad = () => drawBoxes(canvas, imgEl, result);
+            //imgEl.addEventListener("load", onLoad, { once: true });
+            //return () => imgEl.removeEventListener("load", onLoad);
         } else {
-            drawBoxes(canvas, imgEl, result);
+            //drawBoxes(canvas, imgEl, result);
         }
     }, [result, imgSrc]);
 
@@ -191,7 +191,7 @@ const AiDiagnose: React.FC = () => {
                                         ref={canvasRef}
                                         style={{
                                             position: "absolute",
-                                            left: 0,
+                                            left: 425,
                                             top: 0,
                                             pointerEvents: "none",
                                         }}
