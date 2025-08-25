@@ -33,11 +33,12 @@ const AiDiagnose: React.FC = () => {
         const reader = new FileReader();
         reader.onload = () => setImgSrc(String(reader.result));
         reader.readAsDataURL(f);
+        runInference();
     };
 
     // 업로드 & 추론 요청
     const runInference = async (): Promise<void> => {
-        if (!file) {
+        if (!imgSrc) {
             setError("먼저 이미지를 선택하세요.");
             return;
         }
@@ -46,6 +47,7 @@ const AiDiagnose: React.FC = () => {
         setResult(null);
 
         try {
+            alert("runInference")
             // 1) 파일을 base64 (헤더 제거)로 변환
             const base64: string = await fileToBase64(file);
             const base64Body = base64.split(",")[1] ?? ""; // data:image/...;base64, 이후만 추출
@@ -62,13 +64,15 @@ const AiDiagnose: React.FC = () => {
             });
 
             // RoboflowResponse 형태를 기대하지만, 혹시 몰라 any → 부분적 캐스팅
-            const data: any = res.data;
+            const data: any = res?.data;
             setResult(data as RoboflowResponse);
+            console.log(`# data: `, data);
         } catch (err: any) {
             console.error(err);
             setError(err?.message || "요청 중 오류가 발생했습니다.");
         } finally {
             setLoading(false);
+
         }
     };
 
@@ -156,13 +160,39 @@ const AiDiagnose: React.FC = () => {
                                     <span className="rounded bg-emerald-50 px-2 py-0.5 text-emerald-700">JPEG/PNG</span>
                                 </div>
                                 <div className="aspect-[4/3] w-full bg-emerald-50/50">
-                                    {previewUrl ? (
-                                        <img src={previewUrl} alt="preview" className="h-full w-full object-cover" />
+                                    {/* 원본 이미지 */}
+                                    {imgSrc ? (
+                                        <img
+                                            ref={imgRef}
+                                            src={imgSrc}
+                                            alt="preview"
+                                            style={{ width: "100%", display: "block" }}
+                                        />
                                     ) : (
-                                        <div className="flex h-full w-full items-center justify-center text-slate-400">
-                                            사진을 업로드하면 여기에 표시됩니다
+                                        <div
+                                            style={{
+                                                aspectRatio: "4 / 3",
+                                                background: "#f1f5f9",
+                                                display: "grid",
+                                                placeItems: "center",
+                                                color: "#64748b",
+                                                fontSize: 14,
+                                            }}
+                                        >
+                                            이미지 미리보기
                                         </div>
                                     )}
+
+                                    {/* 상단 오버레이 캔버스 */}
+                                    <canvas
+                                        ref={canvasRef}
+                                        style={{
+                                            position: "absolute",
+                                            left: 0,
+                                            top: 0,
+                                            pointerEvents: "none",
+                                        }}
+                                    />
                                 </div>
                             </div>
 
