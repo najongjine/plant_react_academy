@@ -138,9 +138,9 @@ const AiDiagnose: React.FC = () => {
                                 <div className="flex items-center justify-between">
                                     {result?.predictions?.map((p) => (
                                         <span>
-                                            <p className="text-base font-bold text-emerald-900">가짜 레이블</p>
+                                            <p className="text-base font-bold text-emerald-900">{p.class}</p>
                                             <span className="rounded-xl bg-white px-3 py-1 text-xs font-semibold text-emerald-700">
-                                                신뢰도 가짜값%
+                                                {p?.confidence ?? 0 * 100} %
                                             </span>
                                         </span>
                                     ))}
