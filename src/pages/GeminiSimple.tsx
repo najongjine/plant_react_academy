@@ -106,7 +106,7 @@ const GeminiSimple: React.FC<Props> = ({ apiUrl }) => {
                         onDrop={onDrop}
                         onDragOver={onDragOver}
                         className={[
-                            "relative grid rounded-2xl",
+                            "relative grid rounded-2xl overflow-hidden",
                             "w-[560px] md:w-[640px]",   // 가로
                             "h-[300px] md:h-[340px]",   // 세로
                             "mx-auto place-content-center",
@@ -119,7 +119,7 @@ const GeminiSimple: React.FC<Props> = ({ apiUrl }) => {
                             <img
                                 src={firstPreviewUrl}
                                 alt="preview"
-                                className="h-full w-full rounded-xl object-cover"
+                                className="block h-full w-full max-h-full max-w-full object-contain"
                             />
                         ) : (
                             <div className="pointer-events-none flex flex-col items-center justify-center">
