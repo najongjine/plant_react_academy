@@ -6,6 +6,7 @@ import CounterPage from "./pages/CounterPage";
 import EmbedDemo from "./pages/EmbedDemo";
 import TestPage from "./pages/TestPage";
 import Dummy1 from "./pages/Dummy1";
+import GeminiSimple from "./pages/GeminiSimple";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/embed" element={<EmbedDemo />} />
           <Route path="/test" element={<TestPage />} />
           <Route path="/dummy1" element={<Dummy1 />} />
+          <Route path="/gemini" element={<GeminiSimple />} />
         </Route>
       </Routes>
     </BrowserRouter>
