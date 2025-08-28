@@ -71,7 +71,6 @@ const WikiPreview: React.FC = () => {
                 method: "GET",
             });
 
-
         } catch (e: any) {
         } finally {
         }
