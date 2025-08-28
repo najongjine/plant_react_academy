@@ -47,6 +47,8 @@ const WIKI_DATA = [
 ];
 
 const WikiPreview: React.FC = () => {
+    const API_URL = `${process.env.REACT_APP_SERVER_API_URL}/api/gemini/simple`;
+
     const [q, setQ] = useState("");
     const filtered = useMemo(() => {
         if (!q.trim()) return WIKI_DATA;
@@ -59,7 +61,21 @@ const WikiPreview: React.FC = () => {
     useEffect(() => {
         // 1. localhost:3001/api/wiki
         // 2. 리엑트에서 서버에 wiki 데이터 요청하기
+
+
     }, [])
+
+    async function fetchPlantData() {
+        try {
+            const resp = await fetch(API_URL, {
+                method: "GET",
+            });
+
+
+        } catch (e: any) {
+        } finally {
+        }
+    }
 
     return (
         <div>
