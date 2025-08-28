@@ -1,6 +1,23 @@
 // src/components/Header.tsx
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+
+export type Plant = {
+    id: number;
+    name: string;
+
+    sunlight: string;
+    watering: string;
+    temperature: string;
+    humidity: string;
+    soil: string;
+    fertilizer: string;
+    repotting: string;
+
+    created_at: string;     // ISO timestamp (ex: "2025-08-28T12:34:56.000Z")
+    updated_at: string;
+    img_url: string;
+};
 
 const WIKI_DATA = [
     {
@@ -38,6 +55,11 @@ const WikiPreview: React.FC = () => {
             w.title.toLowerCase().includes(s) || w.tags.join(" ").toLowerCase().includes(s)
         );
     }, [q]);
+
+    useEffect(() => {
+        // 1. 서버에서 wiki 데이터 보내주는 rest api
+        // 2. 리엑트에서 서버에 wiki 데이터 요청하기
+    }, [])
 
     return (
         <div>
