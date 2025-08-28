@@ -57,7 +57,7 @@ const WikiPreview: React.FC = () => {
     }, [q]);
 
     useEffect(() => {
-        // 1. 서버에서 wiki 데이터 보내주는 rest api
+        // 1. localhost:3001/api/wiki
         // 2. 리엑트에서 서버에 wiki 데이터 요청하기
     }, [])
 
