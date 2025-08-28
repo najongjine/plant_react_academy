@@ -20,14 +20,14 @@ const Header: React.FC = () => {
                 style={{ backgroundImage: `url(${headerBg})` }}
             />
             <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-                <a href="#home" className="flex items-center gap-2 font-extrabold tracking-tight">
+                <Link to="/" className="flex items-center gap-2 font-extrabold tracking-tight">
                     <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-600 text-white"><LeafIcon /></span>
                     <span className="text-lg md:text-xl">PlantCare</span>
-                </a>
+                </Link>
 
                 <nav className="hidden items-center gap-8 md:flex">
                     <Link
-                        to="/home"
+                        to="/"
                         className="text-[15px] font-medium text-slate-700 hover:text-emerald-700"
                     >
                         Home
