@@ -68,12 +68,15 @@ const WikiPreview: React.FC = () => {
 
     async function fetchPlantData() {
         try {
-            let resp = await axios(API_URL, {
+            let resp: any = await axios(API_URL, {
                 method: "GET",
             });
             resp = resp?.data
-            console.log(`# resp: `, resp)
+            if (!resp?.success) {
+                alert(`서버 에러 발생. ${resp?.message ?? ""}`)
+            }
         } catch (e: any) {
+            alert(`서버 에러 발생. ${e?.message ?? ""}`)
         } finally {
         }
     }
