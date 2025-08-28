@@ -76,6 +76,7 @@ const WikiPreview: React.FC = () => {
             if (!resp?.success) {
                 alert(`서버 에러 발생. ${resp?.message ?? ""}`)
             }
+            setWiki(resp?.data ?? []);
         } catch (e: any) {
             alert(`서버 에러 발생. ${e?.message ?? ""}`)
         } finally {
@@ -84,6 +85,9 @@ const WikiPreview: React.FC = () => {
 
     return (
         <div>
+            <div>
+                {JSON.stringify(wiki)}
+            </div>
             <section id="wiki" className="mx-auto max-w-6xl px-4 py-16">
                 <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
                     <div>
