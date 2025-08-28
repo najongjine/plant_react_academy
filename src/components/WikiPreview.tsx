@@ -49,6 +49,7 @@ const WIKI_DATA = [
 
 const WikiPreview: React.FC = () => {
     const API_URL = `${process.env.REACT_APP_SERVER_API_URL}/api/wiki`;
+    const [wiki, setWiki] = useState<Plant[]>([]);
 
     const [q, setQ] = useState("");
     const filtered = useMemo(() => {
