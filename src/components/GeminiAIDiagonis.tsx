@@ -7,7 +7,7 @@ type Props = {
 };
 
 const GeminiAIDiagonis: React.FC<Props> = ({ apiUrl }) => {
-    const API_URL = apiUrl ?? "http://localhost:3001/api/gemini/simple";
+    const API_URL = apiUrl ?? `${process.env.REACT_APP_SERVER_API_URL}/api/gemini/simple`;
 
     const [files, setFiles] = useState<File[]>([]);
     const [prompt, setPrompt] = useState("");
