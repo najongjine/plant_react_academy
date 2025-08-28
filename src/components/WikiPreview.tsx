@@ -47,7 +47,7 @@ const WIKI_DATA = [
 ];
 
 const WikiPreview: React.FC = () => {
-    const API_URL = `${process.env.REACT_APP_SERVER_API_URL}/api/gemini/simple`;
+    const API_URL = `${process.env.REACT_APP_SERVER_API_URL}/api/wiki`;
 
     const [q, setQ] = useState("");
     const filtered = useMemo(() => {
