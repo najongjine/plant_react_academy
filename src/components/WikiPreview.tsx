@@ -1,6 +1,7 @@
 // src/components/Header.tsx
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 export type Plant = {
     id: number;
@@ -67,9 +68,10 @@ const WikiPreview: React.FC = () => {
 
     async function fetchPlantData() {
         try {
-            const resp = await fetch(API_URL, {
+            let resp = await axios(API_URL, {
                 method: "GET",
             });
+            resp = resp?.data
             console.log(`# resp: `, resp)
         } catch (e: any) {
         } finally {

@@ -2,6 +2,7 @@
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
+
 type Props = {
     apiUrl?: string; // 기본: http://localhost:3001/api/gemini/simple
 };
