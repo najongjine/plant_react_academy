@@ -85,39 +85,27 @@ const WikiPreview: React.FC = () => {
 
     return (
         <div>
-            <div>
-                {JSON.stringify(wiki)}
-            </div>
+
             <section id="wiki" className="mx-auto max-w-6xl px-4 py-16">
                 <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
                     <div>
                         <h2 className="text-2xl font-extrabold tracking-tight text-emerald-900 md:text-3xl">PlantCare Wiki</h2>
-                        <p className="mt-2 text-slate-600">인기 문서를 미리 보고, 더 자세한 내용은 위키에서 확인하세요.</p>
                     </div>
-                    <div className="w-full md:w-80">
-                        <input
-                            value={q}
-                            onChange={(e) => setQ(e.target.value)}
-                            placeholder="검색: 몬스테라, 해충, 물주기..."
-                            className="w-full rounded-2xl border border-emerald-200/70 bg-white px-4 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-300"
-                        />
-                    </div>
+
                 </div>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                    {filtered.map((w) => (
-                        <article key={w.title} className="group overflow-hidden rounded-3xl border border-emerald-200/70 bg-white shadow-sm transition hover:shadow-xl">
+                    {wiki.map((w) => (
+                        <article key={w.name} className="group overflow-hidden rounded-3xl border border-emerald-200/70 bg-white shadow-sm transition hover:shadow-xl">
                             <div className="relative overflow-hidden">
-                                <img src={w.img} alt={w.title} className="h-52 w-full object-cover transition group-hover:scale-[1.03]" />
+                                <img src={w.img_url} alt={w.name} className="h-52 w-full object-cover transition group-hover:scale-[1.03]" />
                                 <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
-                                    {w.tags.map((t) => (
-                                        <span key={t} className="rounded-full bg-emerald-600/90 px-2.5 py-1 text-[10px] font-bold text-white shadow-sm">{t}</span>
-                                    ))}
+
                                 </div>
                             </div>
                             <div className="p-5">
-                                <h3 className="text-lg font-bold text-slate-900">{w.title}</h3>
-                                <p className="mt-1 text-sm text-slate-600">{w.excerpt}</p>
+                                <h3 className="text-lg font-bold text-slate-900">{w.name}</h3>
+                                <p className="mt-1 text-sm text-slate-600">{w.sunlight}</p>
                                 <div className="mt-3 flex items-center justify-between">
                                     <a href="#" className="text-sm font-semibold text-emerald-700 hover:text-emerald-800">자세히 보기 →</a>
                                     <button className="rounded-xl border border-emerald-300/70 px-3 py-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-50">북마크</button>
