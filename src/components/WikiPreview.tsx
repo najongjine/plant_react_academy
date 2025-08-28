@@ -61,7 +61,7 @@ const WikiPreview: React.FC = () => {
     useEffect(() => {
         // 1. localhost:3001/api/wiki
         // 2. 리엑트에서 서버에 wiki 데이터 요청하기
-
+        fetchPlantData();
 
     }, [])
 
@@ -70,7 +70,7 @@ const WikiPreview: React.FC = () => {
             const resp = await fetch(API_URL, {
                 method: "GET",
             });
-
+            console.log(`# resp: `, resp)
         } catch (e: any) {
         } finally {
         }
