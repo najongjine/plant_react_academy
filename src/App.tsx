@@ -8,6 +8,7 @@ import TestPage from "./pages/TestPage";
 import Dummy1 from "./pages/Dummy1";
 import GeminiSimple from "./pages/GeminiSimple";
 import WikiPage from "./pages/WikiPage";
+import PlantDetail from "./pages/PlantDetail";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/dummy1" element={<Dummy1 />} />
           <Route path="/gemini" element={<GeminiSimple />} />
           <Route path="/wiki" element={<WikiPage />} />
+          <Route path="/plant_detail" element={<PlantDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
