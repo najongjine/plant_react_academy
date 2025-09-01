@@ -12,6 +12,7 @@ import CheckIcon from "../components/CheckIcon";
 import Stat from "../components/Stat";
 import { formatBytes } from "../hooks/utils";
 import AiDiagnose from "../components/AiDiagnose";
+import GeminiAIDiagonis from "../components/GeminiAIDiagonis";
 
 /**
  * PlantCare — AI 진단 & 위키 랜딩 (React + Tailwind)
@@ -42,7 +43,7 @@ export default function App() {
     <div className="min-h-screen bg-emerald-50 text-slate-900 selection:bg-emerald-200/60">
       <Hero />
       {/* <Features /> */}
-      <AiDiagnose />
+      <GeminiAIDiagonis />
       <WikiPreview />
       {/* <FAQ /> */}
       <SiteFooter />

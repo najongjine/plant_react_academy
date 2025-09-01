@@ -34,7 +34,7 @@ const Header: React.FC = () => {
                     </Link>
 
                     <Link
-                        to="/ai"
+                        to="/gemini"
                         className="text-[15px] font-medium text-slate-700 hover:text-emerald-700"
                     >
                         AI
@@ -48,12 +48,12 @@ const Header: React.FC = () => {
                     </Link>
                 </nav>
 
-                <a
-                    href="#ai"
+                <Link
+                    to="/gemini"
                     className="rounded-2xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
                 >
                     Start AI
-                </a>
+                </Link>
             </div>
         </header>
     );
