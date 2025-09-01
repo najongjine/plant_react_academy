@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
 
 // --- Types ------------------------------------------------------------------
 export type Plant = {
@@ -23,6 +25,8 @@ export type Plant = {
 
 export default function PlantDetail() {
     const [plant, setPlant] = useState<Plant>({} as any);
+    const [searchParams] = useSearchParams();
+    const plant_id = Number(searchParams?.get("plant_id") ?? 2);
 
     useEffect(() => {
         const dummy: Plant = {
