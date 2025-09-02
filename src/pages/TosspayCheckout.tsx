@@ -91,8 +91,8 @@ const TosspayCheckout: React.FC = () => {
                             await widgets.requestPayment({
                                 orderId: "qzOuadYgJPcObhlvPvD0y",
                                 orderName: "토스 티셔츠 외 2건",
-                                successUrl: window.location.origin + "/success",
-                                failUrl: window.location.origin + "/fail",
+                                successUrl: window.location.origin + "/toss_pay_success",
+                                failUrl: window.location.origin + "/toss_pay_fail",
                                 customerEmail: "customer123@gmail.com",
                                 customerName: "김토스",
                                 customerMobilePhone: "01012341234",
