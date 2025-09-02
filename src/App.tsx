@@ -9,6 +9,9 @@ import Dummy1 from "./pages/Dummy1";
 import GeminiSimple from "./pages/GeminiSimple";
 import WikiPage from "./pages/WikiPage";
 import PlantDetail from "./pages/PlantDetail";
+import TosspayCheckout from "./pages/TosspayCheckout";
+import TosspaySuccess from "./pages/TosspaySuccess";
+import TosspayFail from "./pages/TosspayFail";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
           <Route path="/gemini" element={<GeminiSimple />} />
           <Route path="/wiki" element={<WikiPage />} />
           <Route path="/plant_detail" element={<PlantDetail />} />
+          <Route path="/toss_pay_checkout" element={<TosspayCheckout />} />
+          <Route path="/toss_pay_success" element={<TosspaySuccess />} />
+          <Route path="/toss_pay_fail" element={<TosspayFail />} />
         </Route>
       </Routes>
     </BrowserRouter>
