@@ -24,27 +24,52 @@ export type Plant = {
 
 
 export default function PlantDetail() {
+    const API_URL = `${process.env.REACT_APP_SERVER_API_URL}/api/wiki/get_a_wiki`;
+
     const [plant, setPlant] = useState<Plant>({} as any);
     const [searchParams] = useSearchParams();
-    const plant_id = Number(searchParams?.get("plant_id") ?? 2);
+    const wiki_id = Number(searchParams?.get("wiki_id") ?? 2);
 
     useEffect(() => {
-        const dummy: Plant = {
-            id: 7,
-            name: "몬스테라",
-            sunlight: "밝은 간접광, 직사광선 피함",
-            watering: "상단 2~3cm 흙이 마르면 충분히",
-            temperature: "18~27℃",
-            humidity: "중~높음, 주 1~2회 분무",
-            soil: "배수 좋은 토분(펄라이트 믹스)",
-            fertilizer: "성장기 월 1회 액비",
-            repotting: "1~2년마다 초봄",
-            created_at: "2025-08-01 10:12",
-            updated_at: "2025-09-01 09:30",
-            img_url: "https://picsum.photos/1200/800?blur=0",
-        };
-        setPlant(dummy);
+        // 1. localhost:3001/api/wiki
+        // 2. 리엑트에서 서버에 wiki 데이터 요청하기
+        fetchPlantData();
+
     }, [])
+
+    async function fetchPlantData() {
+        try {
+            let resp: any = await axios(`${API_URL}?wiki_id=${wiki_id}`, {
+                method: "GET",
+            });
+            resp = resp?.data
+            if (!resp?.success) {
+                alert(`서버 에러 발생. ${resp?.message ?? ""}`)
+            }
+            setPlant(resp?.data);
+        } catch (e: any) {
+            alert(`서버 에러 발생. ${e?.message ?? ""}`)
+        } finally {
+        }
+    }
+
+    // useEffect(() => {
+    //     const dummy: Plant = {
+    //         id: 7,
+    //         name: "몬스테라",
+    //         sunlight: "밝은 간접광, 직사광선 피함",
+    //         watering: "상단 2~3cm 흙이 마르면 충분히",
+    //         temperature: "18~27℃",
+    //         humidity: "중~높음, 주 1~2회 분무",
+    //         soil: "배수 좋은 토분(펄라이트 믹스)",
+    //         fertilizer: "성장기 월 1회 액비",
+    //         repotting: "1~2년마다 초봄",
+    //         created_at: "2025-08-01 10:12",
+    //         updated_at: "2025-09-01 09:30",
+    //         img_url: "https://picsum.photos/1200/800?blur=0",
+    //     };
+    //     setPlant(dummy);
+    // }, [])
     return (
         <div className="mx-auto max-w-6xl px-4 py-6">
             {/* Breadcrumbs */}
