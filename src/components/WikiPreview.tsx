@@ -107,7 +107,7 @@ const WikiPreview: React.FC = () => {
                                 <h3 className="text-lg font-bold text-slate-900">{w.name}</h3>
                                 <p className="mt-1 text-sm text-slate-600">{w.sunlight}</p>
                                 <div className="mt-3 flex items-center justify-between">
-                                    <a href="#" className="text-sm font-semibold text-emerald-700 hover:text-emerald-800">자세히 보기 →</a>
+                                    <Link to={`/plant_detail?wiki_id=${w?.id ?? 2}`} className="text-sm font-semibold text-emerald-700 hover:text-emerald-800">자세히 보기 →</Link>
                                     <button className="rounded-xl border border-emerald-300/70 px-3 py-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-50">북마크</button>
                                 </div>
                             </div>
